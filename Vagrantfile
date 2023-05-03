@@ -19,9 +19,22 @@ Vagrant.configure("2") do |config|
     config.vm.define boxname do |box|
         config.vm.box_check_update = false
         config.vm.box = boxconfig[:box_name]
+        config.vm.provider :virtualbox do |vb|
+          vb.memory = 4096
+          vb.cpus = 2
+          vb.customize [
+            "modifyvm", :id,
+            "--graphicscontroller", "vmsvga",
+            "--vram", "128",
+            "--ioapic", "on",
+            "--audioout", "on",
+            "--audio", "pulse",
+            "--audiocontroller", "hda"
+          ]
+        end
         box.vm.host_name = boxname.to_s
         #box.vm.network "private_network", ip: boxconfig[:ip_addr], netmask: "255.255.255.0", virtualbox__intnet: "otus"
-        box.vm.network "public_network", bridge: 'wlp2s0'
+        box.vm.network "public_network", bridge: 'enp7s0'
         box.vm.provision "ansible" do |ansible|
           ansible.playbook = "ansible/playbook.yml"
         end

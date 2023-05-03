@@ -15,5 +15,10 @@
   ansible.builtin.apt:
     name:
     - vim
+    - bzip2
+    - tar
+    - gcc
+    - make
+    - perl
     - firefox-esr
     state: latest
