@@ -1,0 +1,5 @@
+- name: add firefox repo
+  apt_repository:
+    validate_certs: no
+    repo: 'ppa:mozillateam/ppa'
+    state: present

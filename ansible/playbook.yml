@@ -1,8 +1,10 @@
 ---
 - hosts: mamasserver
   become: true
+  vars_files:
+    - defaults/main.yml
   roles:
-    - apt-proxy
+    - apt_proxy
     - common
     - torrent
     - ftp

@@ -1,0 +1,17 @@
+- name: main repo setup
+  ansible.builtin.replace:
+    path: '/etc/apt/sources.list'
+    regexp: '^deb http://(?!{{ apt_proxy_ng }}/)'
+    replace: 'deb http://{{ apt_proxy_ng }}/'
+
+- name: add firefox repo
+  apt_repository:
+    validate_certs: no
+    repo: 'ppa:mozillateam/ppa'
+    state: present
+
+- name: mozilla repo setup
+  ansible.builtin.replace:
+    path: '/etc/apt/sources.list.d/ppa_mozillateam_ppa_jammy.list'
+    regexp: '^deb http://(?!{{ apt_proxy_ng }}/)'
+    replace: 'deb [signed-by=/etc/apt/trusted.gpg] http://{{ apt_proxy_ng }}/'
