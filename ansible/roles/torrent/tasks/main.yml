@@ -1,0 +1,5 @@
+- name: apt install
+  ansible.builtin.apt:
+    name:
+    - transmission-daemon
+    state: latest

@@ -1,0 +1,9 @@
+---
+- hosts: mamasserver
+  become: true
+  roles:
+    - apt-proxy
+    - common
+    - torrent
+    - ftp
+...

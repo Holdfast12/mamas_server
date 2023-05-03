@@ -1,0 +1,5 @@
+- name: replace line
+  ansible.builtin.replace:
+    path: /etc/apt/sources.list
+    regexp: '^deb http://'
+    replace: 'deb http://10.186.1.52:3142/'
