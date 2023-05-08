@@ -3,7 +3,7 @@
 
 MACHINES = {
     :mamasserver => {
-        :box_name => "ubuntu/jammy64",
+        :box_name => "archlinux/archlinux",
         :ip_addr => '192.168.0.3',
         :guest_port1 => '80',
         :host_port1 => '8080'
@@ -28,13 +28,18 @@ Vagrant.configure("2") do |config|
             "--vram", "128",
             "--ioapic", "on",
             "--audioout", "on",
-            "--audio", "pulse",
+            "--audio", "alsa",
             "--audiocontroller", "hda"
           ]
+        config.vm.synced_folder "/home/michael/pacman_cache", "/var/cache/pacman/pkg/"
         end
         box.vm.host_name = boxname.to_s
         #box.vm.network "private_network", ip: boxconfig[:ip_addr], netmask: "255.255.255.0", virtualbox__intnet: "otus"
-        box.vm.network "public_network", bridge: 'enp7s0'
+        box.vm.network "public_network", bridge: 'wlp2s0'
+        box.vm.provision "shell", inline: <<-SHELL
+          pacman -Syu --noconfirm
+          pacman -S python --noconfirm
+          SHELL
         box.vm.provision "ansible" do |ansible|
           ansible.playbook = "ansible/playbook.yml"
         end

@@ -6,14 +6,16 @@
   ansible.builtin.user:
     name: michael
 
-- name: apt update
-  ansible.builtin.apt:
-    update_cache: true
-    force_apt_get: true
-
 - name: apt install
-  ansible.builtin.apt:
+  community.general.pacman:
     name:
-    - vim
-    - firefox-esr
+    - alsa-utils
+    #- vim
+    #- xorg-server
+    #- firefox
+    #xorg-apps - нужно разобраться какие именно apps нужны
+    #- xorg-apps
+    #- xorg-xinit
+    #- nodm
+    #- ttf-dejavu
     state: latest
