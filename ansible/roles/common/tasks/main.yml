@@ -2,15 +2,10 @@
   timezone:
     name: Europe/Moscow
 
-- name: users
-  ansible.builtin.user:
-    name: michael
-
 - name: apt install
   community.general.pacman:
     name:
     - alsa-utils
-    #- vim
     #- xorg-server
     #- firefox
     #xorg-apps - нужно разобраться какие именно apps нужны
