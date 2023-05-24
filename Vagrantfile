@@ -34,8 +34,6 @@ Vagrant.configure("2") do |config|
         config.vm.synced_folder "/home/michael/pacman_cache", "/var/cache/pacman/pkg/"
         end
         box.vm.host_name = boxname.to_s
-        #box.vm.network "private_network", ip: boxconfig[:ip_addr], netmask: "255.255.255.0", virtualbox__intnet: "otus"
-        box.vm.network "public_network", bridge: 'wlp2s0'
         box.vm.provision "shell", inline: <<-SHELL
           pacman -Syu --noconfirm
           pacman -S python --noconfirm
