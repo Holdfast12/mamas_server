@@ -20,12 +20,13 @@ Vagrant.configure("2") do |config|
         config.vm.box_check_update = false
         config.vm.box = boxconfig[:box_name]
         config.vm.provider :virtualbox do |vb|
+          vb.check_guest_additions = true
           vb.memory = 4096
           vb.cpus = 2
           vb.customize [
             "modifyvm", :id,
-            "--graphicscontroller", "vboxsvga",
-            "--accelerate3d", "on",
+            #"--graphicscontroller", "vboxsvga",
+            #"--accelerate3d", "on",
             "--vram", "128",
             "--ioapic", "on",
             "--audioout", "on",

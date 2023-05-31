@@ -6,7 +6,7 @@
   community.general.pacman:
     name:
     - alsa-utils
-    - xorg-server
+    #- xorg-server
     - xorg-xinit
     - firefox
     - openbox
