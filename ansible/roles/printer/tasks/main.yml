@@ -1,0 +1,5 @@
+- name: apt install
+  community.general.pacman:
+    name:
+    - cups
+    state: latest

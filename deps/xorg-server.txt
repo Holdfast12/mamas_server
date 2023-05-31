@@ -1,0 +1,13 @@
+libepoxy
+libxfont2
+pixman
+xorg-server-common
+libunwind
+dbus
+libgl
+xf86-input-libinput
+nettle
+libpciaccess
+libdrm
+libxshmfence
+libxcvt

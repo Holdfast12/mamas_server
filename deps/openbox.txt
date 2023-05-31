@@ -1,0 +1,9 @@
+startup-notification
+libxml2
+libxinerama
+libxrandr
+libxcursor
+pango
+imlib2
+librsvg
+libsm

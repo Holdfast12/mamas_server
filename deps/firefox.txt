@@ -1,0 +1,8 @@
+dbus-glib
+ffmpeg
+gtk3
+libpulse
+libxt
+mime-types
+nss
+ttf-font

@@ -8,3 +8,11 @@ alsamixer
 
 #консольный плеер mp3
 mocp
+# показать зависимости пакета
+pacman -Si pidgin|sed -n '/Depends\ On/,/:/p'|sed '$d'|cut -d: -f2 | sed 's:^.::g' | sed 's:  :\n:g'
+
+
+sed -i 's:  :/n:g'
+
+Environment variable $XAUTHORITY not set
+export $(dbus-launch)

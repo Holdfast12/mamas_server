@@ -6,11 +6,78 @@
   community.general.pacman:
     name:
     - alsa-utils
-    #- xorg-server
-    #- firefox
-    #xorg-apps - нужно разобраться какие именно apps нужны
+    - xorg-server
+    - xorg-xinit
+    - firefox
+    - openbox
+    - vim
+    # python-xdg нужен чтобы не вылетала ошибка ERROR: openbox-xdg-autostart requires PyXDG to be installed
+    - python-xdg
+    - telegram-desktop
     #- xorg-apps
-    #- xorg-xinit
     #- nodm
     #- ttf-dejavu
     state: latest
+
+- name: xinit from anybody
+  copy:
+    src: Xwrapper.config
+    dest: /etc/X11/Xwrapper.config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: xinitrc vagrant
+  copy:
+    src: .xinitrc
+    dest: /home/vagrant/.xinitrc
+    owner: vagrant
+    group: vagrant
+    mode: 0644
+
+- name: xinitrc root
+  copy:
+    src: .xinitrc
+    dest: /root/.xinitrc
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create openbox conf dir if not exist
+  ansible.builtin.file:
+    path: /home/vagrant/.config/openbox/
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: '0644'
+
+- name: create openbox conf dir if not exist
+  ansible.builtin.file:
+    path: /root/.config/openbox/
+    state: directory
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: disable headerbars in openbox
+  copy:
+    src: openbox/rc.xml
+    dest: /home/vagrant/.config/openbox/rc.xml
+    owner: vagrant
+    group: vagrant
+    mode: 0644
+
+- name: disable headerbars in openbox
+  copy:
+    src: openbox/rc.xml
+    dest: /root/.config/openbox/rc.xml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: add user in Audio and terminal
+  ansible.builtin.user:
+    name: vagrant
+    groups: audio, tty
+    append: yes
+    
