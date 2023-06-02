@@ -15,3 +15,4 @@
 # If you want to use XFCE config tools...
 #
 #xfce-mcs-manager &
+setxkbmap -layout ru,us -variant -option grp:alt_shift_toggle

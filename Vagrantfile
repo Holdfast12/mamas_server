@@ -25,8 +25,9 @@ Vagrant.configure("2") do |config|
           vb.cpus = 2
           vb.customize [
             "modifyvm", :id,
-            #"--graphicscontroller", "vboxsvga",
-            #"--accelerate3d", "on",
+            "--graphicscontroller", "vmsvga",
+            "--accelerate3d", "on",
+            "--cpuexecutioncap", "50",
             "--vram", "128",
             "--ioapic", "on",
             "--audioout", "on",

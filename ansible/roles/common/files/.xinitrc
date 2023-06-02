@@ -13,5 +13,6 @@ fi
 
 amixer sset Master unmute &
 amixer sset Master 100% &
+telegram-desktop &
 firefox &
 exec openbox-session

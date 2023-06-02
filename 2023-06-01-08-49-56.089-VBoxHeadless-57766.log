@@ -1,0 +1,12 @@
+Log created: 2023-06-01T08:49:56.894913000Z
+Process ID:  57766 (0xe1a6)
+Parent PID:  52788 (0xce34)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: mamas_server_mamasserver_1685605948536_31172
+Arg[3]: --startvm
+Arg[4]: 0f76b7e1-193d-47dd-a47b-4eb773c2efa1
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2

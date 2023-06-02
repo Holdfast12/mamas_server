@@ -2,21 +2,40 @@
   timezone:
     name: Europe/Moscow
 
-- name: apt install
+- name: create locale
+  community.general.locale_gen:
+    name: ru_RU.UTF-8
+    state: present
+
+- name: set locale
+  become: yes
+  command: localectl set-locale ru_RU.UTF-8
+
+- name: remove virtualbox-guest-utils-nox
+  community.general.pacman:
+    name:
+    - virtualbox-guest-utils-nox
+    state: absent
+
+- name: install soft
   community.general.pacman:
     name:
     - alsa-utils
-    #- xorg-server
+    - xorg-server
+    - xorg-server-common
+    - xorg-server-xwayland
     - xorg-xinit
+    - xorg-xrandr
     - firefox
     - openbox
     - vim
     # python-xdg нужен чтобы не вылетала ошибка ERROR: openbox-xdg-autostart requires PyXDG to be installed
     - python-xdg
     - telegram-desktop
-    #- xorg-apps
-    #- nodm
-    #- ttf-dejavu
+    - xf86-video-fbdev
+    - xf86-video-vesa
+    - virtualbox-guest-iso
+    - virtualbox-guest-utils
     state: latest
 
 - name: xinit from anybody
@@ -35,29 +54,14 @@
     group: vagrant
     mode: 0644
 
-- name: xinitrc root
-  copy:
-    src: .xinitrc
-    dest: /root/.xinitrc
-    owner: root
-    group: root
-    mode: 0644
-
 - name: create openbox conf dir if not exist
   ansible.builtin.file:
     path: /home/vagrant/.config/openbox/
+    recurse: yes
     state: directory
     owner: vagrant
     group: vagrant
-    mode: '0644'
-
-- name: create openbox conf dir if not exist
-  ansible.builtin.file:
-    path: /root/.config/openbox/
-    state: directory
-    owner: root
-    group: root
-    mode: '0644'
+    mode: 0555
 
 - name: disable headerbars in openbox
   copy:
@@ -67,17 +71,17 @@
     group: vagrant
     mode: 0644
 
-- name: disable headerbars in openbox
+- name: enable lang switching
   copy:
-    src: openbox/rc.xml
-    dest: /root/.config/openbox/rc.xml
-    owner: root
-    group: root
+    src: openbox/autostart
+    dest: /home/vagrant/.config/openbox/autostart
+    owner: vagrant
+    group: vagrant
     mode: 0644
 
-- name: add user in Audio and terminal
+- name: add user in Audio and Video
   ansible.builtin.user:
     name: vagrant
-    groups: audio, tty
+    groups: audio, video
     append: yes
     
