@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
             "modifyvm", :id,
             "--graphicscontroller", "vmsvga",
             "--accelerate3d", "on",
-            "--cpuexecutioncap", "50",
+            "--cpuexecutioncap", "70",
             "--vram", "128",
             "--ioapic", "on",
             "--audioout", "on",

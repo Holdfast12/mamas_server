@@ -646,6 +646,7 @@
 <applications>
   <application class="*">
     <decor>no</decor>
+    <maximized>yes</maximized>
   </application>
 <!--
   # this is an example with comments through out. use these to make your
